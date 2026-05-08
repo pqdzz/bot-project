@@ -2,41 +2,39 @@ import telebot
 import time
 from datetime import datetime, timedelta
 
-# ضع التوكن الخاص بك هنا مباشرة بين علامتي التنصيص
+# --- الإعدادات الأساسية ---
+# التوكن الصحيح والجاهز
 API_TOKEN = '8260522692:AAFQjw5-3-Qo7Oie2vb_WsTdNIRgaoAFK_E'
+ADMIN_ID = 96799666  # ايديك الخاص
 
 bot = telebot.TeleBot(API_TOKEN)
 
-# كمل باقي كودك هنا...
-
-
-# اسم ملف البيانات
+# --- اسم ملف البيانات (إذا كنت تستخدمه) ---
 DB_FILE = "global_subs.json"
 
-def load_data():
-    if os.path.exists(DB_FILE):
-        with open(DB_FILE, "r", encoding='utf-8') as f:
-            try:
-                return json.load(f)
-            except:
-                return {}
-    return {}
+# --- الأوامر ---
 
-def save_data(data):
-    with open(DB_FILE, "w", encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
-
+# أمر البداية /start
 @bot.message_handler(commands=['start'])
-def start(message):
-    uid = str(message.from_user.id)
-    subs = load_data()
-    
-    # رسالة ترحيبية بسيطة للتأكد من العمل
-    bot.reply_to(message, "أهلاً بك في بوت رفع الشدات! 🚀\nالبوت شغال الآن على السيرفر الجديد.")
+def send_welcome(message):
+    user_name = message.from_user.first_name
+    bot.reply_to(message, f"هلا بك يا {user_name} في بوت رفيق المعرفة 🤖\nالبوت شغال الحين وجاهز لخدمتك!")
 
-# سطر التأكد من التشغيل في السيرفر
-print("✅ Bot is running successfully...")
+# أمر المساعدة /help
+@bot.message_handler(commands=['help'])
+def send_help(message):
+    help_text = (
+        "قائمة الأوامر المتوفرة:\n"
+        "/start - تشغيل البوت\n"
+        "/help - عرض هذه القائمة"
+    )
+    bot.reply_to(message, help_text)
 
-# تشغيل البوت
-if __name__ == "__main__":
-    bot.infinity_polling()
+# الرد على أي رسالة نصية أخرى
+@bot.message_handler(func=lambda message: True)
+def echo_all(message):
+    bot.reply_to(message, "وصلت رسالتك! جاري تطوير باقي الخدمات..")
+
+# --- تشغيل البوت ---
+print("البوت بدأ العمل الآن بدون أخطاء...")
+bot.infinity_polling()
