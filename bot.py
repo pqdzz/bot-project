@@ -4,7 +4,7 @@ import os
 from datetime import datetime, timedelta
 
 # --- الإعدادات الأساسية ---
-API_TOKEN = '8260522692:AAFQjw5-3-Qo70ie68O7V4G0S7' # توكن بوتك
+API_TOKEN = '8260522692:AAFQjw5-3-Qo7Oie2vb_WsTdNIRgaoAFK_E' # توكن بوتك
 ADMIN_ID = 96799666  # ايديك
 bot = telebot.TeleBot(API_TOKEN)
 
