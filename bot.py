@@ -1,13 +1,14 @@
 import telebot
-import json
-import os
+import time
 from datetime import datetime, timedelta
 
-# --- الإعدادات الأساسية ---
-API_TOKEN = 'API_TOKEN = '8260522692:AAFQjw5-3-Qo7Oie2vb_WsTdNIRgaoAFK_E'
-' # توكن بوتك
-ADMIN_ID = 96799666  # ايديك
+# ضع التوكن الخاص بك هنا مباشرة بين علامتي التنصيص
+API_TOKEN = '8260522692:AAFQjw5-3-Qo7Oie2vb_WsTdNIRgaoAFK_E'
+
 bot = telebot.TeleBot(API_TOKEN)
+
+# كمل باقي كودك هنا...
+
 
 # اسم ملف البيانات
 DB_FILE = "global_subs.json"
